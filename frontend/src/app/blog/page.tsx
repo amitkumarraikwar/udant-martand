@@ -40,7 +40,7 @@ export default function BlogPage() {
   return (
     <div ref={containerRef}>
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      
+
       <Header onSearchOpen={() => setIsSearchOpen(true)} />
 
       <main className="wrap">
@@ -49,8 +49,8 @@ export default function BlogPage() {
           <div className="sec-line"></div>
           <span className="sec-aside">OPINION & ANALYSIS</span>
         </div>
-        
-        <BlogGrid />
+
+        {/* <BlogGrid /> */}
         <div style={{ marginTop: '4rem' }}>
           <BlogGrid />
         </div>

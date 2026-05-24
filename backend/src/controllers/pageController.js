@@ -41,3 +41,19 @@ export const getPages = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// @desc    Delete page by id or slug
+// @route   DELETE /api/pages/:slug
+// @access  Private
+export const deletePage = async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const query = slug.match(/^[0-9a-fA-F]{24}$/) ? { _id: slug } : { slug };
+    const page = await Page.findOneAndDelete(query);
+    if (!page) return res.status(404).json({ message: 'Page not found' });
+    res.json({ message: 'Page deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SearchOverlay from '@/components/SearchOverlay';
@@ -83,14 +84,17 @@ export default function DocumentariesPage() {
         ) : (
           <div className="grid grid-3">
             {docs.map((doc) => (
-              <div key={doc._id} className="card">
-                <div className="card-cat">{doc.category.toUpperCase()}</div>
-                <h3 className="card-title">{doc.title}</h3>
-                <p className="card-excerpt">{doc.excerpt}</p>
-                <div className="card-meta" style={{ marginTop: 'auto', fontSize: '10px', opacity: 0.5 }}>
-                  {new Date(doc.createdAt).toLocaleDateString()}
+              <Link key={doc._id} href={`/documentaries/${doc.slug}`} className="card-link">
+                <div className="card">
+                  <div className="card-cat">{doc.category.toUpperCase()}</div>
+                  <h3 className="card-title">{doc.title}</h3>
+                  <p className="card-excerpt">{doc.excerpt}</p>
+                  <div className="card-meta">
+                    <span>{new Date(doc.createdAt).toLocaleDateString()}</span>
+                    <span className="watch-link">Watch →</span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
             {docs.length === 0 && (
               <p className="lora" style={{ gridColumn: '1 / -1', textAlign: 'center', opacity: 0.5 }}>No documentaries found in the archive.</p>

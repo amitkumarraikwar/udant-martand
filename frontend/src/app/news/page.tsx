@@ -40,7 +40,7 @@ export default function NewsPage() {
   return (
     <div ref={containerRef}>
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      
+
       <Header onSearchOpen={() => setIsSearchOpen(true)} />
 
       <main className="wrap">
@@ -49,8 +49,7 @@ export default function NewsPage() {
           <div className="sec-line"></div>
           <span className="sec-aside">CHRONICLE OF CURRENT EVENTS</span>
         </div>
-        
-        <NewsGrid />
+
         <NewsGrid />
       </main>
 

@@ -6,6 +6,7 @@ import newsRoutes from './routes/newsRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import newspaperRoutes from './routes/newspaperRoutes.js';
 import pageRoutes from './routes/pageRoutes.js';
+import backupRoutes from './routes/backupRoutes.js';
 
 
 // Load env vars
@@ -32,6 +33,7 @@ app.use('/api/news', newsRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/newspapers', newspaperRoutes);
 app.use('/api/pages', pageRoutes);
+app.use('/api/backup', backupRoutes);
 
 const PORT = process.env.PORT || 5000;
 

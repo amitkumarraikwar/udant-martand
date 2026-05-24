@@ -1,5 +1,5 @@
 import express from 'express';
-import { getPage, upsertPage, getPages } from '../controllers/pageController.js';
+import { getPage, upsertPage, getPages, deletePage } from '../controllers/pageController.js';
 import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
@@ -9,6 +9,7 @@ router.route('/')
   .post(protect, upsertPage);
 
 router.route('/:slug')
-  .get(getPage);
+  .get(getPage)
+  .delete(protect, deletePage);
 
 export default router;

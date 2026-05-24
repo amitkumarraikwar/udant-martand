@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import BreakingTicker from '@/components/BreakingTicker';
 import Hero from '@/components/Hero';
@@ -85,7 +86,7 @@ export default function Home() {
         <div className="sec-head">
           <span className="sec-tag">Blog & Analysis</span>
           <div className="sec-line"></div>
-          <a href="#" className="sec-link">View All Posts →</a>
+          <Link href="/blog" className="sec-link">View All Posts →</Link>
         </div>
         
         <BlogGrid />

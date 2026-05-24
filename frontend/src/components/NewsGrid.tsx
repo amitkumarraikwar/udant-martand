@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface NewsItem {
   _id: string;
+  slug: string;
   title: string;
   excerpt: string;
   category: string;
@@ -73,9 +75,9 @@ export default function NewsGrid({ category = 'News' }: NewsGridProps) {
             <div className="fig-texture"></div>
           </div>
           <div className="hero-cat" style={{ fontSize: '8px' }}>{item.category}</div>
-          <h2><a href="#">{item.title}</a></h2>
+          <h2><Link href={`/news/${item.slug}`}>{item.title}</Link></h2>
           <p>{item.excerpt}</p>
-          <a href="#" className="read-link">Full Story →</a>
+          <Link href={`/news/${item.slug}`} className="read-link">Full Story →</Link>
         </motion.article>
       ))}
     </div>

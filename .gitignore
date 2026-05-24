@@ -40,3 +40,9 @@ yarn-error.log*
 # OS metadata
 .DS_Store
 Thumbs.db
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Logs and local dynamic dynamic output files
+*.log

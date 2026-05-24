@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const API_BASE_URL = 'http://localhost:5000/api';
 
 interface DocItem {
   _id: string;
   title: string;
+  slug: string;
   excerpt: string;
   category: string;
   imageUrl: string;
@@ -77,34 +79,40 @@ export default function DocumentariesAndNewspaper() {
           <p className="lora" style={{ opacity: 0.5, padding: '2rem 0' }}>No documentaries available yet.</p>
         ) : (
           docs.map((doc) => (
-            <motion.article 
-              key={doc._id} 
-              className="doc-item"
-              whileHover={{ x: 5 }}
+            <Link 
+              href={`/documentaries/${doc.slug}`} 
+              key={doc._id}
+              style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
             >
-              <div className="doc-thumb">
-                {doc.imageUrl ? (
-                  <img 
-                    src={doc.imageUrl} 
-                    alt={doc.title} 
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }}
-                  />
-                ) : (
-                  <div style={{ width: '100%', height: '100%', background: 'var(--bg-paper)' }}></div>
-                )}
-                <div className="fig-texture"></div>
-                <div className="play"></div>
-              </div>
-              <div className="doc-info">
-                <div className="cat" style={{ fontSize: '10px', color: 'var(--ink3)', marginBottom: '4px' }}>
-                  {doc.category} · {new Date(doc.createdAt).getFullYear()}
+              <motion.article 
+                className="doc-item"
+                whileHover={{ x: 5 }}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="doc-thumb">
+                  {doc.imageUrl ? (
+                    <img 
+                      src={doc.imageUrl} 
+                      alt={doc.title} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }}
+                    />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', background: 'var(--bg-paper)' }}></div>
+                  )}
+                  <div className="fig-texture"></div>
+                  <div className="play"></div>
                 </div>
-                <h3>{doc.title}</h3>
-                <div className="meta" style={{ fontSize: '10px', color: 'var(--ink4)' }}>
-                  {doc.excerpt.slice(0, 80)}...
+                <div className="doc-info">
+                  <div className="cat" style={{ fontSize: '10px', color: 'var(--ink3)', marginBottom: '4px' }}>
+                    {doc.category} · {new Date(doc.createdAt).getFullYear()}
+                  </div>
+                  <h3>{doc.title}</h3>
+                  <div className="meta" style={{ fontSize: '10px', color: 'var(--ink4)' }}>
+                    {doc.excerpt.slice(0, 80)}...
+                  </div>
                 </div>
-              </div>
-            </motion.article>
+              </motion.article>
+            </Link>
           ))
         )}
       </div>

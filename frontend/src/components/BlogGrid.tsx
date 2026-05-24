@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+import Link from 'next/link';
+
 interface BlogPost {
   _id: string;
   title: string;
@@ -10,6 +12,7 @@ interface BlogPost {
   category: string;
   author: string;
   imageUrl?: string;
+  slug: string;
   createdAt: string;
 }
 
@@ -63,7 +66,7 @@ export default function BlogGrid() {
           transition={{ delay: idx * 0.1 }}
         >
           <div className="hero-cat" style={{ fontSize: '9px' }}>{post.category}</div>
-          <h2><a href="#">{post.title}</a></h2>
+          <h2><Link href={`/blog/${post.slug}`}>{post.title}</Link></h2>
           <p style={{ fontSize: '14px', marginBottom: '18px' }}>{post.excerpt}</p>
           <div className="author-row">
             <div className="ava" style={{ overflow: 'hidden', padding: 0 }}>
